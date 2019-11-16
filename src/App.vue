@@ -1,14 +1,22 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
 
-    <router-view/>
+    <router-view v-if="!$route.meta.keepAlive"></router-view>
+    <div v-if="$route.meta.a">
+      <foot></foot>
+      <router-view v-if="!$route.meta.a"></router-view>
+    </div>
+
   </div>
 </template>
 
 <script>
+  import foot from '@/components/foot'
 export default {
-  name: 'App'
+  name: 'App',
+  components:{
+    foot
+  }
 }
 </script>
 
@@ -19,6 +27,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
